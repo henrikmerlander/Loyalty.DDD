@@ -27,7 +27,8 @@ namespace API
         {
             services
                 .AddCustomMvc()
-                .AddCustomDbContext(Configuration);
+                .AddCustomDbContext(Configuration)
+                .AddCustomSwagger(Configuration);
 
             var container = new ContainerBuilder();
             container.Populate(services);
@@ -53,6 +54,12 @@ namespace API
 
             app.UseHttpsRedirection();
             app.UseMvc();
+
+            app.UseSwagger()
+                .UseSwaggerUI(c =>
+                {
+                    c.SwaggerEndpoint($"/swagger/v1/swagger.json", "Loyalty.DDD API V1");
+                });
         }
 
     }
@@ -96,6 +103,23 @@ namespace API
                    },
                        ServiceLifetime.Scoped  //Showing explicitly that the DbContext is shared across the HTTP request scope (graph of objects started in the HTTP request)
                    );
+
+            return services;
+        }
+
+        public static IServiceCollection AddCustomSwagger(this IServiceCollection services, IConfiguration configuration)
+        {
+            services.AddSwaggerGen(options =>
+            {
+                options.DescribeAllEnumsAsStrings();
+                options.SwaggerDoc("v1", new Swashbuckle.AspNetCore.Swagger.Info
+                {
+                    Title = "Loyalty.DDD API",
+                    Version = "v1",
+                    Description = "The Loyalty.DDD API",
+                    TermsOfService = "Terms Of Service"
+                });
+            });
 
             return services;
         }
