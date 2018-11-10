@@ -1,7 +1,9 @@
 ﻿using System.Reflection;
 using Application.Behaviors;
 using Application.Commands;
+using Application.Validations;
 using Autofac;
+using FluentValidation;
 using MediatR;
 
 namespace API.Infrastructure.AutofacModules
@@ -18,6 +20,12 @@ namespace API.Infrastructure.AutofacModules
             builder.RegisterAssemblyTypes(
                                   typeof(CreateWalletCommand).GetTypeInfo().Assembly).
                                        AsClosedTypesOf(typeof(IRequestHandler<,>));
+
+            // Register the Command's Validators (Validators based on FluentValidation library)
+            builder
+                .RegisterAssemblyTypes(typeof(CreateWalletCommandValidator).GetTypeInfo().Assembly)
+                .Where(t => t.IsClosedTypeOf(typeof(IValidator<>)))
+                .AsImplementedInterfaces();
 
             builder.Register<ServiceFactory>(context =>
             {
