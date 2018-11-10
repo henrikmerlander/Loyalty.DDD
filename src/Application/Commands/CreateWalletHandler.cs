@@ -6,18 +6,18 @@ using MediatR;
 
 namespace Application.Commands
 {
-    public class CreateWalletCommandHandler : IRequestHandler<CreateWalletCommand, bool>
+    public class CreateWalletHandler : IRequestHandler<CreateWallet, bool>
     {
         private readonly IWalletRepository _walletRepository;
         private readonly IMediator _mediator;
 
-        public CreateWalletCommandHandler(IMediator mediator, IWalletRepository walletRepository)
+        public CreateWalletHandler(IMediator mediator, IWalletRepository walletRepository)
         {
             _walletRepository = walletRepository ?? throw new ArgumentNullException(nameof(walletRepository));
             _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
         }
 
-        public async Task<bool> Handle(CreateWalletCommand request, CancellationToken cancellationToken)
+        public async Task<bool> Handle(CreateWallet request, CancellationToken cancellationToken)
         {
             var wallet = new Wallet(request.UserName);
 

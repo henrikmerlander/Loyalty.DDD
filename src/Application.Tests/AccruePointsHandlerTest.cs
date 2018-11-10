@@ -7,11 +7,11 @@ using NUnit.Framework;
 
 namespace Application.Tests
 {
-    internal class AccruePointsCommandHandlerTest
+    internal class AccruePointsHandlerTest
     {
         private readonly Mock<IWalletRepository> _walletRepositoryMock;
 
-        public AccruePointsCommandHandlerTest()
+        public AccruePointsHandlerTest()
         {
             _walletRepositoryMock = new Mock<IWalletRepository>();
         }
@@ -19,12 +19,12 @@ namespace Application.Tests
         [Test]
         public async Task Handle_returns_false_if_wallet_does_not_exist()
         {
-            var accruePointsCommand = new AccruePointsCommand(It.IsAny<int>(), It.IsAny<int>());
+            var accruePointsCommand = new AccruePoints(It.IsAny<int>(), It.IsAny<int>());
 
             _walletRepositoryMock.Setup(walletRepo => walletRepo.GetAsync(It.IsAny<int>()))
                 .ReturnsAsync(default(Wallet));
 
-            var handler = new AccruePointsCommandHandler(_walletRepositoryMock.Object);
+            var handler = new AccruePointsHandler(_walletRepositoryMock.Object);
             var cancellationToken = new CancellationToken();
             var result = await handler.Handle(accruePointsCommand, cancellationToken);
 
@@ -34,7 +34,7 @@ namespace Application.Tests
         [Test]
         public async Task Handle_returns_true_if_wallet_is_persisted()
         {
-            var accruePointsCommand = new AccruePointsCommand(It.IsAny<int>(), It.IsAny<int>());
+            var accruePointsCommand = new AccruePoints(It.IsAny<int>(), It.IsAny<int>());
 
             _walletRepositoryMock.Setup(walletRepo => walletRepo.GetAsync(It.IsAny<int>()))
                 .ReturnsAsync(FakeWallet());
@@ -42,7 +42,7 @@ namespace Application.Tests
             _walletRepositoryMock.Setup(walletRepo => walletRepo.UnitOfWork.SaveEntitiesAsync(default(CancellationToken)))
                 .Returns(Task.FromResult(true));
 
-            var handler = new AccruePointsCommandHandler(_walletRepositoryMock.Object);
+            var handler = new AccruePointsHandler(_walletRepositoryMock.Object);
             var cancellationToken = new CancellationToken();
             var result = await handler.Handle(accruePointsCommand, cancellationToken);
 

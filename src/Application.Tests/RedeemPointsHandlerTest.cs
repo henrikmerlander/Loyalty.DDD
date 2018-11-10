@@ -7,11 +7,11 @@ using NUnit.Framework;
 
 namespace Application.Tests
 {
-    internal class RedeemPointsCommandHandlerTest
+    internal class RedeemPointsHandlerTest
     {
         private readonly Mock<IWalletRepository> _walletRepositoryMock;
 
-        public RedeemPointsCommandHandlerTest()
+        public RedeemPointsHandlerTest()
         {
             _walletRepositoryMock = new Mock<IWalletRepository>();
         }
@@ -19,12 +19,12 @@ namespace Application.Tests
         [Test]
         public async Task Handle_returns_false_if_wallet_does_not_exist()
         {
-            var redeemPointsCommand = new RedeemPointsCommand(It.IsAny<int>(), It.IsAny<int>());
+            var redeemPointsCommand = new RedeemPoints(It.IsAny<int>(), It.IsAny<int>());
 
             _walletRepositoryMock.Setup(walletRepo => walletRepo.GetAsync(It.IsAny<int>()))
                 .ReturnsAsync(default(Wallet));
 
-            var handler = new RedeemPointsCommandHandler(_walletRepositoryMock.Object);
+            var handler = new RedeemPointsHandler(_walletRepositoryMock.Object);
             var cancellationToken = new CancellationToken();
             var result = await handler.Handle(redeemPointsCommand, cancellationToken);
 
@@ -34,7 +34,7 @@ namespace Application.Tests
         [Test]
         public async Task Handle_returns_true_if_wallet_is_persisted()
         {
-            var redeemPointsCommand = new RedeemPointsCommand(It.IsAny<int>(), It.IsAny<int>());
+            var redeemPointsCommand = new RedeemPoints(It.IsAny<int>(), It.IsAny<int>());
 
             _walletRepositoryMock.Setup(walletRepo => walletRepo.GetAsync(It.IsAny<int>()))
                 .ReturnsAsync(FakeWallet());
@@ -42,7 +42,7 @@ namespace Application.Tests
             _walletRepositoryMock.Setup(walletRepo => walletRepo.UnitOfWork.SaveEntitiesAsync(default(CancellationToken)))
                 .Returns(Task.FromResult(true));
 
-            var handler = new RedeemPointsCommandHandler(_walletRepositoryMock.Object);
+            var handler = new RedeemPointsHandler(_walletRepositoryMock.Object);
             var cancellationToken = new CancellationToken();
             var result = await handler.Handle(redeemPointsCommand, cancellationToken);
 

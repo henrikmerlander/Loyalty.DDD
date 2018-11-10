@@ -2,13 +2,13 @@
 
 namespace Application.Commands
 {
-    public class AccruePointsCommand : IRequest<bool>
+    public class RedeemPoints : IRequest<bool>
     {
         public int Id { get; private set; }
 
         public int Points { get; private set; }
 
-        public AccruePointsCommand(int id, int points)
+        public RedeemPoints(int id, int points)
         {
             Id = id;
             Points = points;

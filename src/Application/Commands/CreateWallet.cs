@@ -2,11 +2,11 @@
 
 namespace Application.Commands
 {
-    public class CreateWalletCommand : IRequest<bool>
+    public class CreateWallet : IRequest<bool>
     {
         public string UserName { get; private set; }
 
-        public CreateWalletCommand(string userName)
+        public CreateWallet(string userName)
         {
             UserName = userName;
         }

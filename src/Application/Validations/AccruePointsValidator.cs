@@ -3,9 +3,9 @@ using FluentValidation;
 
 namespace Application.Validations
 {
-    public class AccruePointsCommandValidator : AbstractValidator<AccruePointsCommand>
+    public class AccruePointsValidator : AbstractValidator<AccruePoints>
     {
-        public AccruePointsCommandValidator()
+        public AccruePointsValidator()
         {
             RuleFor(command => command.Points).GreaterThan(0);
         }

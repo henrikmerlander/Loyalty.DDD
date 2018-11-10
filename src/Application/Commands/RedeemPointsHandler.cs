@@ -8,16 +8,16 @@ using MediatR;
 
 namespace Application.Commands
 {
-    public class RedeemPointsCommandHandler : IRequestHandler<RedeemPointsCommand, bool>
+    public class RedeemPointsHandler : IRequestHandler<RedeemPoints, bool>
     {
         private readonly IWalletRepository _walletRepository;
 
-        public RedeemPointsCommandHandler(IWalletRepository walletRepository)
+        public RedeemPointsHandler(IWalletRepository walletRepository)
         {
             _walletRepository = walletRepository;
         }
 
-        public async Task<bool> Handle(RedeemPointsCommand request, CancellationToken cancellationToken)
+        public async Task<bool> Handle(RedeemPoints request, CancellationToken cancellationToken)
         {
             var wallet = await _walletRepository.GetAsync(request.Id);
 

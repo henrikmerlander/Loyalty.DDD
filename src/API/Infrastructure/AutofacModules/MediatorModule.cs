@@ -18,12 +18,12 @@ namespace API.Infrastructure.AutofacModules
             // Register all the Command classes (they implement IRequestHandler)
             // in assembly holding the Commands
             builder.RegisterAssemblyTypes(
-                                  typeof(CreateWalletCommand).GetTypeInfo().Assembly).
+                                  typeof(CreateWallet).GetTypeInfo().Assembly).
                                        AsClosedTypesOf(typeof(IRequestHandler<,>));
 
             // Register the Command's Validators (Validators based on FluentValidation library)
             builder
-                .RegisterAssemblyTypes(typeof(CreateWalletCommandValidator).GetTypeInfo().Assembly)
+                .RegisterAssemblyTypes(typeof(CreateWalletValidator).GetTypeInfo().Assembly)
                 .Where(t => t.IsClosedTypeOf(typeof(IValidator<>)))
                 .AsImplementedInterfaces();
 

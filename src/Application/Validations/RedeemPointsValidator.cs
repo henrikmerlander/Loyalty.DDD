@@ -3,9 +3,9 @@ using FluentValidation;
 
 namespace Application.Validations
 {
-    public class RedeemPointsCommandValidator : AbstractValidator<RedeemPointsCommand>
+    public class RedeemPointsValidator : AbstractValidator<RedeemPoints>
     {
-        public RedeemPointsCommandValidator()
+        public RedeemPointsValidator()
         {
             RuleFor(command => command.Points).GreaterThan(0);
         }

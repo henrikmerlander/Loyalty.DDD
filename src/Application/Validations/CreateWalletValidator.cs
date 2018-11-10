@@ -3,9 +3,9 @@ using FluentValidation;
 
 namespace Application.Validations
 {
-    public class CreateWalletCommandValidator : AbstractValidator<CreateWalletCommand>
+    public class CreateWalletValidator : AbstractValidator<CreateWallet>
     {
-        public CreateWalletCommandValidator()
+        public CreateWalletValidator()
         {
             RuleFor(command => command.UserName).NotEmpty();
         }

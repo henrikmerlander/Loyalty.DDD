@@ -5,16 +5,16 @@ using MediatR;
 
 namespace Application.Commands
 {
-    public class AccruePointsCommandHandler : IRequestHandler<AccruePointsCommand, bool>
+    public class AccruePointsHandler : IRequestHandler<AccruePoints, bool>
     {
         private readonly IWalletRepository _walletRepository;
 
-        public AccruePointsCommandHandler(IWalletRepository walletRepository)
+        public AccruePointsHandler(IWalletRepository walletRepository)
         {
             _walletRepository = walletRepository;
         }
 
-        public async Task<bool> Handle(AccruePointsCommand request, CancellationToken cancellationToken)
+        public async Task<bool> Handle(AccruePoints request, CancellationToken cancellationToken)
         {
             var wallet = await _walletRepository.GetAsync(request.Id);
 

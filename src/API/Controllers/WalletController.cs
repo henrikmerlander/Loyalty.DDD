@@ -17,7 +17,7 @@ namespace API.Controllers
 
         [Route("create")]
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody]CreateWalletCommand command)
+        public async Task<IActionResult> Create([FromBody]CreateWallet command)
         {
             var commandResult = await _mediator.Send(command);
 
@@ -26,7 +26,7 @@ namespace API.Controllers
 
         [Route("accrue")]
         [HttpPost]
-        public async Task<IActionResult> Accrue([FromBody]AccruePointsCommand command)
+        public async Task<IActionResult> Accrue([FromBody]AccruePoints command)
         {
             var commandResult = await _mediator.Send(command);
 
@@ -35,7 +35,7 @@ namespace API.Controllers
 
         [Route("redeem")]
         [HttpPost]
-        public async Task<IActionResult> Redeem([FromBody]RedeemPointsCommand command)
+        public async Task<IActionResult> Redeem([FromBody]RedeemPoints command)
         {
             var commandResult = await _mediator.Send(command);
 
