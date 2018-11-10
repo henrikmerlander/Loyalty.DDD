@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Domain.Exceptions;
+using Domain.Exceptions.Seedwork;
 using FluentValidation;
 using MediatR;
 
