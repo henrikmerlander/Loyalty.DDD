@@ -31,5 +31,14 @@ namespace API.Controllers
 
             return commandResult ? Ok() : (IActionResult)BadRequest();
         }
+
+        [Route("redeem")]
+        [HttpPost]
+        public async Task<IActionResult> Redeem([FromBody]RedeemPointsCommand command)
+        {
+            var commandResult = await _mediator.Send(command);
+
+            return commandResult ? Ok() : (IActionResult)BadRequest();
+        }
     }
 }
