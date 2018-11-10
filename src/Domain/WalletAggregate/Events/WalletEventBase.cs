@@ -1,12 +1,12 @@
 ﻿using Domain.Seedwork;
 
-namespace Domain.Wallet.Events
+namespace Domain.WalletAggregate.Events
 {
     public abstract class WalletEventBase : DomainEvent
     {
-        public WalletAggregate Wallet { get; }
+        public Wallet Wallet { get; }
 
-        public WalletEventBase(WalletAggregate wallet)
+        public WalletEventBase(Wallet wallet)
         {
             Wallet = wallet;
         }

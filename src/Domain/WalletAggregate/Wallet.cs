@@ -1,14 +1,14 @@
 ﻿using Domain.Seedwork;
-using Domain.Wallet.Events;
-using Domain.Wallet.Exceptions;
+using Domain.WalletAggregate.Events;
+using Domain.WalletAggregate.Exceptions;
 
-namespace Domain.Wallet
+namespace Domain.WalletAggregate
 {
-    public class WalletAggregate : Entity, IAggregateRoot
+    public class Wallet : Entity, IAggregateRoot
     {
         public int Balance { get; private set; }
 
-        public WalletAggregate()
+        public Wallet()
         {
             AddWalletCreatedDomainEvent();
         }

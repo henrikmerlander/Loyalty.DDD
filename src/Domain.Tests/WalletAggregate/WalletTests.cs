@@ -1,10 +1,9 @@
-﻿
-using Domain.Wallet;
-using Domain.Wallet.Exceptions;
+﻿using Domain.WalletAggregate;
+using Domain.WalletAggregate.Exceptions;
 using FakeItEasy;
 using NUnit.Framework;
 
-namespace Domain.Tests.Wallet
+namespace Domain.Tests.WalletAggregate
 {
     public class WalletTests
     {
@@ -13,7 +12,7 @@ namespace Domain.Tests.Wallet
         {
             var expectedResult = 1;
 
-            var wallet = new WalletAggregate();
+            var wallet = new Wallet();
 
             Assert.AreEqual(expectedResult, wallet.DomainEvents.Count);
         }
@@ -23,7 +22,7 @@ namespace Domain.Tests.Wallet
         {
             var expectedResult = 2;
 
-            var wallet = new WalletAggregate();
+            var wallet = new Wallet();
             wallet.Accrue(A.Dummy<int>());
 
             Assert.AreEqual(expectedResult, wallet.DomainEvents.Count);
@@ -34,7 +33,7 @@ namespace Domain.Tests.Wallet
         {
             var expectedResult = 100;
 
-            var wallet = new WalletAggregate();
+            var wallet = new Wallet();
             wallet.Accrue(100);
 
             Assert.AreEqual(expectedResult, wallet.Balance);
@@ -45,7 +44,7 @@ namespace Domain.Tests.Wallet
         {
             var expectedResult = 80;
 
-            var wallet = new WalletAggregate();
+            var wallet = new Wallet();
             wallet.Accrue(100);
             wallet.Redeem(20);
 
@@ -57,7 +56,7 @@ namespace Domain.Tests.Wallet
         {
             var expectedResult = 3;
 
-            var wallet = new WalletAggregate();
+            var wallet = new Wallet();
             wallet.Accrue(A.Dummy<int>());
             wallet.Redeem(A.Dummy<int>());
 
@@ -67,7 +66,7 @@ namespace Domain.Tests.Wallet
         [Test]
         public void Redeem_points_exceeding_balance_throws_insufficient_funds()
         {
-            var wallet = new WalletAggregate();
+            var wallet = new Wallet();
             wallet.Accrue(100);
 
             Assert.Throws<InsufficientFunds>(() => wallet.Redeem(101));

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Domain.Wallet.Exceptions
+namespace Domain.WalletAggregate.Exceptions
 {
     public abstract class WalletExceptionBase : Exception
     {
