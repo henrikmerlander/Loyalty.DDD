@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace API.Migrations
+namespace API.Infrastructure.Migrations
 {
     public partial class AddUserName : Migration
     {

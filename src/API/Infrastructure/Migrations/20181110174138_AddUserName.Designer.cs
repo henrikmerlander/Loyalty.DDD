@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace API.Migrations
+namespace API.Infrastructure.Migrations
 {
     [DbContext(typeof(WalletContext))]
     [Migration("20181110174138_AddUserName")]
