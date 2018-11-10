@@ -1,11 +1,11 @@
 ﻿using Application.Commands;
 using FluentValidation;
 
-namespace Application.Validations
+namespace Application.Validators
 {
-    public class RedeemPointsValidator : AbstractValidator<RedeemPoints>
+    public class AccruePointsValidator : AbstractValidator<AccruePoints>
     {
-        public RedeemPointsValidator()
+        public AccruePointsValidator()
         {
             RuleFor(command => command.Points).GreaterThan(0);
         }

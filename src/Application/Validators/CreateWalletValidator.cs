@@ -1,7 +1,7 @@
 ﻿using Application.Commands;
 using FluentValidation;
 
-namespace Application.Validations
+namespace Application.Validators
 {
     public class CreateWalletValidator : AbstractValidator<CreateWallet>
     {

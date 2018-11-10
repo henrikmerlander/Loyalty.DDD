@@ -1,7 +1,7 @@
 ﻿using System.Reflection;
 using Application.Behaviors;
 using Application.Commands;
-using Application.Validations;
+using Application.Validators;
 using Autofac;
 using FluentValidation;
 using MediatR;
