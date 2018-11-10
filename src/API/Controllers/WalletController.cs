@@ -22,5 +22,14 @@ namespace API.Controllers
 
             return commandResult ? Ok() : (IActionResult)BadRequest();
         }
+
+        [Route("accrue")]
+        [HttpPost]
+        public async Task<IActionResult> Accrue([FromBody]AccruePointsCommand command)
+        {
+            var commandResult = await _mediator.Send(command);
+
+            return commandResult ? Ok() : (IActionResult)BadRequest();
+        }
     }
 }
