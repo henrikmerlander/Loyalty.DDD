@@ -1,6 +1,8 @@
-﻿namespace Domain.WalletAggregate.Exceptions
+﻿using Domain.Exceptions;
+
+namespace Domain.WalletAggregate.Exceptions
 {
-    public class InsufficientFunds : WalletExceptionBase
+    public class InsufficientFunds : DomainExceptionBase
     {
     }
 }
