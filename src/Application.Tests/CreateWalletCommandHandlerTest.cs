@@ -22,7 +22,7 @@ namespace Application.Tests
         [Test]
         public async Task Handle_returns_false_if_wallet_is_not_persisted()
         {
-            var createWalletCommand = new CreateWalletCommand();
+            var createWalletCommand = new CreateWalletCommand(It.IsAny<string>());
 
             _walletRepositoryMock.Setup(walletRepo => walletRepo.UnitOfWork.SaveEntitiesAsync(default(CancellationToken)))
                 .Returns(Task.FromResult(false));
@@ -37,7 +37,7 @@ namespace Application.Tests
         [Test]
         public async Task Handle_returns_true_if_wallet_is_persisted()
         {
-            var createWalletCommand = new CreateWalletCommand();
+            var createWalletCommand = new CreateWalletCommand(It.IsAny<string>());
 
             _walletRepositoryMock.Setup(walletRepo => walletRepo.UnitOfWork.SaveEntitiesAsync(default(CancellationToken)))
                 .Returns(Task.FromResult(true));

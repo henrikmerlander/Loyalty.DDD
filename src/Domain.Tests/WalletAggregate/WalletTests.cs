@@ -12,9 +12,19 @@ namespace Domain.Tests.WalletAggregate
         {
             var expectedResult = 1;
 
-            var wallet = new Wallet();
+            var wallet = new Wallet(A.Dummy<string>());
 
             Assert.AreEqual(expectedResult, wallet.DomainEvents.Count);
+        }
+
+        [Test]
+        public void Create_wallet_has_user_name()
+        {
+            var expectedResult = "Henrik";
+
+            var wallet = new Wallet("Henrik");
+
+            Assert.AreEqual(expectedResult, wallet.UserName);
         }
 
         [Test]
@@ -22,7 +32,7 @@ namespace Domain.Tests.WalletAggregate
         {
             var expectedResult = 2;
 
-            var wallet = new Wallet();
+            var wallet = new Wallet(A.Dummy<string>());
             wallet.Accrue(A.Dummy<int>());
 
             Assert.AreEqual(expectedResult, wallet.DomainEvents.Count);
@@ -33,7 +43,7 @@ namespace Domain.Tests.WalletAggregate
         {
             var expectedResult = 100;
 
-            var wallet = new Wallet();
+            var wallet = new Wallet(A.Dummy<string>());
             wallet.Accrue(100);
 
             Assert.AreEqual(expectedResult, wallet.Balance);
@@ -44,7 +54,7 @@ namespace Domain.Tests.WalletAggregate
         {
             var expectedResult = 80;
 
-            var wallet = new Wallet();
+            var wallet = new Wallet(A.Dummy<string>());
             wallet.Accrue(100);
             wallet.Redeem(20);
 
@@ -56,7 +66,7 @@ namespace Domain.Tests.WalletAggregate
         {
             var expectedResult = 3;
 
-            var wallet = new Wallet();
+            var wallet = new Wallet(A.Dummy<string>());
             wallet.Accrue(A.Dummy<int>());
             wallet.Redeem(A.Dummy<int>());
 
@@ -66,7 +76,7 @@ namespace Domain.Tests.WalletAggregate
         [Test]
         public void Redeem_points_exceeding_balance_throws_insufficient_funds()
         {
-            var wallet = new Wallet();
+            var wallet = new Wallet(A.Dummy<string>());
             wallet.Accrue(100);
 
             Assert.Throws<InsufficientFunds>(() => wallet.Redeem(101));

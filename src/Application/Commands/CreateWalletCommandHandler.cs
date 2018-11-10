@@ -19,7 +19,7 @@ namespace Application.Commands
 
         public async Task<bool> Handle(CreateWalletCommand request, CancellationToken cancellationToken)
         {
-            var wallet = new Wallet();
+            var wallet = new Wallet(request.UserName);
 
             _walletRepository.Add(wallet);
 

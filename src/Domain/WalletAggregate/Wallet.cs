@@ -7,9 +7,12 @@ namespace Domain.WalletAggregate
     public class Wallet : Entity, IAggregateRoot
     {
         public int Balance { get; private set; }
+        public string UserName { get; private set; }
 
-        public Wallet()
+        public Wallet(string userName)
         {
+            UserName = userName;
+
             AddWalletCreatedDomainEvent();
         }
 
