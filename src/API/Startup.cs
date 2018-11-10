@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Reflection;
 using API.Infrastructure.AutofacModules;
+using API.Infrastructure.Filters;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Infrastructure;
@@ -61,8 +62,11 @@ namespace API
         public static IServiceCollection AddCustomMvc(this IServiceCollection services)
         {
             // Add framework services.
-            services.AddMvc().AddControllersAsServices();  //Injecting Controllers themselves thru DI
-                                                           //For further info see: http://docs.autofac.org/en/latest/integration/aspnetcore.html#controllers-as-services
+            services.AddMvc(options =>
+            {
+                options.Filters.Add(typeof(HttpGlobalExceptionFilter));
+            }).AddControllersAsServices();  //Injecting Controllers themselves thru DI
+                                            //For further info see: http://docs.autofac.org/en/latest/integration/aspnetcore.html#controllers-as-services
 
             services.AddCors(options =>
             {
