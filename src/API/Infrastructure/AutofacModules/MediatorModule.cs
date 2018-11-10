@@ -35,7 +35,7 @@ namespace API.Infrastructure.AutofacModules
 
             builder.RegisterGeneric(typeof(LoggingBehavior<,>)).
                                                    As(typeof(IPipelineBehavior<,>));
-            builder.RegisterGeneric(typeof(ValidatorBehavior<,>)).
+            builder.RegisterGeneric(typeof(ValidatingBehavior<,>)).
                                                    As(typeof(IPipelineBehavior<,>));
         }
     }

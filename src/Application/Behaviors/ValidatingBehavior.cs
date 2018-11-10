@@ -7,10 +7,10 @@ using MediatR;
 
 namespace Application.Behaviors
 {
-    public class ValidatorBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
+    public class ValidatingBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
     {
         private readonly IValidator<TRequest>[] _validators;
-        public ValidatorBehavior(IValidator<TRequest>[] validators)
+        public ValidatingBehavior(IValidator<TRequest>[] validators)
         {
             _validators = validators;
         }
