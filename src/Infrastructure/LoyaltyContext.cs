@@ -9,16 +9,16 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure
 {
-    public class WalletContext : DbContext, IUnitOfWork
+    public class LoyaltyContext : DbContext, IUnitOfWork
     {
         public const string DEFAULT_SCHEMA = "loyalty";
         public DbSet<Wallet> Wallets { get; set; }
 
         private readonly IMediator _mediator;
 
-        private WalletContext(DbContextOptions<WalletContext> options) : base(options) { }
+        private LoyaltyContext(DbContextOptions<LoyaltyContext> options) : base(options) { }
 
-        public WalletContext(DbContextOptions<WalletContext> options, IMediator mediator) : base(options)
+        public LoyaltyContext(DbContextOptions<LoyaltyContext> options, IMediator mediator) : base(options)
         {
             _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
         }

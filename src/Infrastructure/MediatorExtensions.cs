@@ -7,7 +7,7 @@ namespace Infrastructure
 {
     internal static class MediatorExtensions
     {
-        public static async Task DispatchDomainEventsAsync(this IMediator mediator, WalletContext context)
+        public static async Task DispatchDomainEventsAsync(this IMediator mediator, LoyaltyContext context)
         {
             var domainEntities = context.ChangeTracker
                 .Entries<Entity>()

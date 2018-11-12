@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace API.Infrastructure.Migrations
 {
-    [DbContext(typeof(WalletContext))]
+    [DbContext(typeof(LoyaltyContext))]
     partial class WalletContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

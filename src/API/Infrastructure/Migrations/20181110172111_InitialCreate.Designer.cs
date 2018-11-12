@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace API.Infrastructure.Migrations
 {
-    [DbContext(typeof(WalletContext))]
+    [DbContext(typeof(LoyaltyContext))]
     [Migration("20181110172111_InitialCreate")]
     partial class InitialCreate
     {

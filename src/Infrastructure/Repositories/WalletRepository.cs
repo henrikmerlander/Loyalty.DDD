@@ -8,11 +8,11 @@ namespace Infrastructure.Repositories
 {
     public class WalletRepository : IWalletRepository
     {
-        private readonly WalletContext _context;
+        private readonly LoyaltyContext _context;
 
         public IUnitOfWork UnitOfWork => _context;
 
-        public WalletRepository(WalletContext context)
+        public WalletRepository(LoyaltyContext context)
         {
             _context = context ?? throw new ArgumentNullException(nameof(context));
         }

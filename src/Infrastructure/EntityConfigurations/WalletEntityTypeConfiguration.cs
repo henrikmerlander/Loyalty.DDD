@@ -8,7 +8,7 @@ namespace Infrastructure.EntityConfigurations
     {
         public void Configure(EntityTypeBuilder<Wallet> builder)
         {
-            builder.ToTable("wallets", WalletContext.DEFAULT_SCHEMA);
+            builder.ToTable("wallets", LoyaltyContext.DEFAULT_SCHEMA);
         }
     }
 }

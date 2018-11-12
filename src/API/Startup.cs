@@ -92,7 +92,7 @@ namespace API
         public static IServiceCollection AddCustomDbContext(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddEntityFrameworkSqlServer()
-                   .AddDbContext<WalletContext>(options =>
+                   .AddDbContext<LoyaltyContext>(options =>
                    {
                        options.UseSqlServer(configuration["ConnectionString"],
                            sqlServerOptionsAction: sqlOptions =>
